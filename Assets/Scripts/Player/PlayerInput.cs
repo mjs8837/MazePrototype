@@ -2,29 +2,12 @@ using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerInput : MonoBehaviour
+public class PlayerInput : MonoBehaviour, IPlayerInput
 {
-    private enum PlayerInputTypes
-    {
-        Move,
-        Camera
-    }
-
     [SerializeField]
     private InputActionAsset _inputActionAsset;
 
-    private Vector2 _moveInput;
-    private Vector2 _cameraInput;
-
-    public Vector2 MoveInput
-    {
-        get { return _moveInput; }
-    }
-
-    public Vector2 CameraInput
-    {
-        get { return _cameraInput; }
-    }
+    public event EventHandler<ValueChangeEventArgs> ValueChangeEvent;
 
     void Start()
     {
@@ -48,12 +31,12 @@ public class PlayerInput : MonoBehaviour
                 {
                     case PlayerInputTypes.Move:
 
-                        _moveInput = callbackContext.ReadValue<Vector2>();
+                        ValueChangeEvent?.Invoke(this, new ValueChangeEventArgs(playerInputType, callbackContext.ReadValue<Vector2>()));
                         break;
 
                     case PlayerInputTypes.Camera:
 
-                        _cameraInput = callbackContext.ReadValue<Vector2>().normalized;
+                        ValueChangeEvent?.Invoke(this, new ValueChangeEventArgs(playerInputType, callbackContext.ReadValue<Vector2>().normalized));
                         break;
 
                     default:
