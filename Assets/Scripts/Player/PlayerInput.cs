@@ -2,12 +2,15 @@ using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
+/// <summary>
+/// Class used to handle reading input from the Unity Input System and pass it to <see cref="Player"/>.
+/// </summary>
 public class PlayerInput : MonoBehaviour, IPlayerInput
 {
     [SerializeField]
     private InputActionAsset _inputActionAsset;
 
-    public event EventHandler<ValueChangeEventArgs> ValueChangeEvent;
+    public event EventHandler<PlayerInputValueChangeEventArgs> ValueChangeEvent;
 
     void Start()
     {
@@ -31,12 +34,12 @@ public class PlayerInput : MonoBehaviour, IPlayerInput
                 {
                     case PlayerInputTypes.Move:
 
-                        ValueChangeEvent?.Invoke(this, new ValueChangeEventArgs(playerInputType, callbackContext.ReadValue<Vector2>()));
+                        ValueChangeEvent?.Invoke(this, new PlayerInputValueChangeEventArgs(playerInputType, callbackContext.ReadValue<Vector2>()));
                         break;
 
                     case PlayerInputTypes.Camera:
 
-                        ValueChangeEvent?.Invoke(this, new ValueChangeEventArgs(playerInputType, callbackContext.ReadValue<Vector2>().normalized));
+                        ValueChangeEvent?.Invoke(this, new PlayerInputValueChangeEventArgs(playerInputType, callbackContext.ReadValue<Vector2>()));
                         break;
 
                     default:
