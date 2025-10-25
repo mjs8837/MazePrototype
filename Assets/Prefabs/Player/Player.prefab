@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 3784776950112682967}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -49,6 +49,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Player
   _movementSpeedMultiplier: 10
   _cameraMovementSpeedMultiplier: 0.1
+  _cameraXAngleClamps: {x: -30, y: 45}
 --- !u!143 &3784776950112682967
 CharacterController:
   m_ObjectHideFlags: 0

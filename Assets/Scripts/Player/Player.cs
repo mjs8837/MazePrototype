@@ -31,6 +31,10 @@ public class Player : MonoBehaviour
 
     private Vector2 _cameraAngles = Vector2.zero;
 
+    // Point Fields
+    private int _points;
+    private int _collectiblesGrabbed;
+
     private void Start()
     {
         _playerCamera = GetComponentInChildren<Camera>();
@@ -59,6 +63,18 @@ public class Player : MonoBehaviour
         {
             _playerInput.ValueChangeEvent -= _playerInput_ValueChangeEvent;
         }
+    }
+
+    /// <summary>
+    /// Function used to add points to the player and signal to update the points text.
+    /// </summary>
+    /// <param name="collectible">The collectible that was grabbed.</param>
+    public void GrabCollectible(Collectible collectible)
+    {
+        _points += collectible.Points;
+        _collectiblesGrabbed++;
+
+        UIManager.Instance.SetPointsText(_points);
     }
 
     /// <summary>
