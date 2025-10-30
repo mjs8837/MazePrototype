@@ -4,5 +4,6 @@
 public enum PlayerInputTypes
 {
     Move,
-    Camera
+    Camera,
+    Sprint
 }

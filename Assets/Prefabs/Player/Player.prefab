@@ -47,9 +47,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d53047d28107091428ee00dd6406f777, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Player
-  _movementSpeedMultiplier: 10
+  _movementSpeedMultiplier: 8
   _cameraMovementSpeedMultiplier: 0.1
   _cameraXAngleClamps: {x: -30, y: 45}
+  _sprintSpeedMultiplier: 5
 --- !u!143 &3784776950112682967
 CharacterController:
   m_ObjectHideFlags: 0

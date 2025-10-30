@@ -32,14 +32,15 @@ public class PlayerInput : MonoBehaviour, IPlayerInput
             {
                 switch (playerInputType)
                 {
-                    case PlayerInputTypes.Move:
+                    case PlayerInputTypes.Move or
+                        PlayerInputTypes.Camera:
 
                         ValueChangeEvent?.Invoke(this, new PlayerInputValueChangeEventArgs(playerInputType, callbackContext.ReadValue<Vector2>()));
                         break;
 
-                    case PlayerInputTypes.Camera:
+                    case PlayerInputTypes.Sprint:
 
-                        ValueChangeEvent?.Invoke(this, new PlayerInputValueChangeEventArgs(playerInputType, callbackContext.ReadValue<Vector2>()));
+                        ValueChangeEvent?.Invoke(this, new PlayerInputValueChangeEventArgs(playerInputType, callbackContext.ReadValue<float>()));
                         break;
 
                     default:
