@@ -1,3 +1,4 @@
+using System.Collections;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -12,6 +13,12 @@ public class UIManager : Singleton<UIManager>
 
     [SerializeField]
     private Image _enduranceBar;
+
+    [SerializeField]
+    private Image _enduranceBarOutline;
+
+    private bool _enduraceBarShouldFlicker = false;
+    private Coroutine _enduranceBarFlicker;
 
     /// <summary>
     /// Function responsible for updating the points text.
@@ -37,6 +44,28 @@ public class UIManager : Singleton<UIManager>
             endurance = 1.0f;
         }
 
+        _enduraceBarShouldFlicker = endurance < 0.35f;
         _enduranceBar.fillAmount = endurance;
+
+        if (_enduraceBarShouldFlicker)
+        {
+            _enduranceBarFlicker ??= StartCoroutine(enduranceBarFlicker(endurance));
+        }
+    }
+
+    private IEnumerator enduranceBarFlicker(float endurance)
+    {
+        bool isRed = true;
+
+        while (_enduraceBarShouldFlicker)
+        {
+            _enduranceBarOutline.color = isRed ? Color.red : Color.white;
+            isRed = !isRed;
+
+            yield return new WaitForSeconds(endurance / 2.0f);
+        }
+
+        _enduranceBarFlicker = null;
+        _enduranceBarOutline.color = Color.white;
     }
 }

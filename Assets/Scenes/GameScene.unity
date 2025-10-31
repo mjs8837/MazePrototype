@@ -837,6 +837,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::UIManager
   _pointsText: {fileID: 295647644}
   _enduranceBar: {fileID: 2043104274}
+  _enduranceBarOutline: {fileID: 1061756986}
 --- !u!4 &658202827 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5071407652402727943, guid: 8b9b200be9b2ad9469743c5668752421, type: 3}
